@@ -1,0 +1,26 @@
+{
+  "name": "components_1808_2130_el",
+  "version": "1.0.0",
+  "description": "LearnJavaScript project / Учебный проект",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emwonder/components_1808_2130_el.git"
+  },
+  "keywords": [
+    "components"
+  ],
+  "author": "Elena Ladanova",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emwonder/components_1808_2130_el/issues"
+  },
+  "homepage": "https://github.com/emwonder/components_1808_2130_el#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "node-static": "^0.7.10"
+  }
+}
