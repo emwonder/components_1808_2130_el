@@ -4,8 +4,8 @@
   "description": "LearnJavaScript project / Учебный проект",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint components/**/*.js",
-    "serve": "static .",
+    "lint": "./node_modules/.bin/eslint components/**/*.js",
+    "serve": "./node_modules/.bin/static-server .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
