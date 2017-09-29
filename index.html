@@ -1,43 +1,32 @@
-﻿<!DOCTYPE html>
-<html lang="ru">
+﻿
+<html>
+    <head>
+        <title>Курсовой проект learn.javascript.ru</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+        <link rel="stylesheet" href="components/app/app.css">
+        <link rel="stylesheet" href="components/form/form.css">
+        <link rel="stylesheet" href="components/menu/menu.css">
+    </head>
+    <body>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Components</title>
-    <link rel="stylesheet" href="components/menu/menu.css">
-    <link rel="stylesheet" href="components/form/form.css">
+        <div class="app js-app">
+            <div class="js-menu"></div>
+            <div class="js-form"></div>
+        </div>
 
+        <script src="components/form/form.js"></script>
 
-</head>
+        <script src="components/menu/menu.pug.js"></script>
+        <script src="components/menu/menu.js"></script>
 
-<body>
-    <h1>Components</h1>
-    <h3>Проект на JavaScript</h3>
+        <script src="components/app/app.js"></script>
 
-    <div class="js-app">
-        <div class="menu js-menu"> 
-        <h2 class="menu_title js-title"></h2>
-        <ul class="menu_list js-menu-list"></ul>
-        </div>     
-    </div>
-
-    <form class="form" action="/" method="post">
-        <input class = "form text" type="text" name="URL" value="" />
-        <input class = "form text" type="text" name="Name" value="" />
-        <input type="button" onclick="" value="Добавить сайт">
-    </form>
-
-    <script src="components/menu/menu.js"></script>
-    <script src="components/app/app.js"></script>
-    <script src="components/form/form.js"></script>
-    
-    <script>
-    "use strict";
-
-    new window.App({el: document.querySelector('.js-app')});
-    </script>
-</body>
-
+        <script>
+            "use strict";
+            new window.App({el: document.querySelector('.js-app')});
+        </script>
+    </body>
 </html>
