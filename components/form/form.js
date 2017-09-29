@@ -7,10 +7,12 @@
      * 
      */
     class Form {
-        constructor({el}) {
+    /**
+     * 
+     */
+        constructor({}) {
 
         }
-
     }
 
     window.Form = Form;

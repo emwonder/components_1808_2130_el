@@ -1,7 +1,7 @@
 module.exports = {
    "extends": "google",
    "parserOptions": {
-     "ecmaVersion": 8
+   "ecmaVersion": 8
  },
  "globals": {
   "document": true,

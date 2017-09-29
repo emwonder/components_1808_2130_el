@@ -1,11 +1,14 @@
 (function() {
   'use strict';
-
   /**
    * @param {Object} el
    * 
    */
   class Menu {
+  /**
+   * @param {Object} el
+   * 
+   */
       constructor({el, data}) {
           this.$el = el;
           this.data = data;
@@ -14,32 +17,48 @@
 
           this.initEvents();
       }
-
+  /**
+   * @param {Object} data
+   * 
+   */
       setData(data) {
         this.data = data;
         this.render();
       }
-
+  /**
+   * 
+   */
       render() {
         this.$title.innerText = this.data.title;
         this.renderItems(this.data.items, this.$menuList);
       }
 
+      /**
+       * @param {Object} items
+       * @param {Object} container
+       */
       renderItems(items, container) {
         items.forEach((item) => {
           this._addItem(item, container);
         });
       }
-
+  /**
+   * 
+   */
       initEvents() {
-        this.$title.addEventListener('click', this.toggleDisplayMenu.bind(this));
+        this.$title.addEventListener('click',
+        this.toggleDisplayMenu.bind(this));
         this.$menuList.addEventListener('click', this.removeItem.bind(this));
       }
-
+  /**
+   * 
+   */
       toggleDisplayMenu() {
         this.$el.classList.toggle('_open');
       }
-
+  /**
+   * @param {Object} ev
+   */
       removeItem(ev) {
         let currentRemoveIcon = ev.target;
         let currentItem;
@@ -52,7 +71,10 @@
           currentList.removeChild(currentItem);
         }
       }
-
+      /**
+       * @param {Object} item
+       * @param {Object} container
+       */
       _addItem(item, container) {
         let itemText = item.title;
         let ulEl = document.createElement('ul');
