@@ -7,6 +7,9 @@ module.exports = {
   "document": true,
   "foo": true,
   "window": true
+},
+'rules': {
+    'comma-dangle': [2, 'never']
 }
 };
 
