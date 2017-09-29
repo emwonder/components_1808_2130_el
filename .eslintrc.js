@@ -1,3 +1,12 @@
 module.exports = {
-    "extends": "eslint:recommended"
+   "extends": "google",
+   "parserOptions": {
+     "ecmaVersion": 8
+ },
+ "globals": {
+  "document": true,
+  "foo": true,
+  "window": true
+}
 };
+
