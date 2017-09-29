@@ -1,49 +1,64 @@
 (function() {
     'use strict';
 
-    // import
-    const Menu = window.Menu;
-        /**
-         * 
-         */
-    class App {
+   // import
+   let Menu = window.Menu;
+   let Form = window.Form;
+
     /**
-     *@param {Object} el 
+     * Компонента "Форма"
      */
+    class App {
+        /**
+         * @param {Object} param0 
+         * @param {HTMLElement} param0.el
+         */
         constructor({el}) {
-            this.menu = new Menu({
-                el: el.querySelector('.js-menu'),
-                data: {
-                    title: 'Сайты',
-                    items: [],
+            let menu = new Menu({
+                el: document.querySelector('.js-menu'),
+
+                onPick(item) {
+                    console.log(item);
                 },
+
+                data: {
+                    title: 'SINGLE PAGE APPLICATION',
+                    items: [
+                        {
+                            href: 'https://vk.com',
+                            anchor: 'vk.com'
+                        },
+                        {
+                            href: 'https://ok.ru',
+                            anchor: 'ok.ru'
+                        },
+                        {
+                            href: 'https://yahoo.com',
+                            anchor: 'yahoo.com'
+                        },
+                        {
+                            href: 'https://yandex.ru',
+                            anchor: 'yandex.ru'
+                        },
+                        {
+                            href: 'https://yandex.ru',
+                            anchor: 'yandex.ru'
+                        }
+                    ]
+                }
             });
 
-        this.menu.setData({
-                title: 'Сайты',
-                items: [
-                    {title: 'Первый'},
-                    {
-                      title: 'Второй',
-                      items: [
-                        {title: 'Второй-первый'},
-                        {
-                          title: 'Второй-второй',
-                          items: [
-                            {title: 'Второй-второй-1'},
-                            {title: 'Второй-второй-2'},
-                            {title: 'Второй-второй-3'},
-                          ],
-                        },
-                      ],
-                    },
-                    {title: 'Третий'},
-                    {title: 'Четвертый'},
-                  ],
+            let form = new Form({
+                el: el.querySelector('.js-form'),
+                data: {}
+            });
+
+            form.addEventListener('save', (event) => {
+                menu.addItem(event.detail);
             });
         }
     }
 
     // export
-     window.App = App;
+    window.App = App;
 })();

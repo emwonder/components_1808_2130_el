@@ -1,100 +1,152 @@
 (function() {
   'use strict';
+
   /**
-   * @param {Object} el
-   * 
+   * @typedef {Item} Тип элемента меню
+   * @prop {string} href URL
+   * @prop {string} anchor текст
+   */
+
+  /**
+   * Компонента "Меню"
    */
   class Menu {
-  /**
-   * @param {Object} el
-   * 
-   */
-      constructor({el, data}) {
-          this.$el = el;
-          this.data = data;
-          this.$title = el.querySelector('.js-title');
-          this.$menuList = el.querySelector('.js-menu-list');
-
-          this.initEvents();
-      }
-  /**
-   * @param {Object} data
-   * 
-   */
-      setData(data) {
-        this.data = data;
-        this.render();
-      }
-  /**
-   * 
-   */
-      render() {
-        this.$title.innerText = this.data.title;
-        this.renderItems(this.data.items, this.$menuList);
-      }
-
       /**
-       * @param {Object} items
-       * @param {Object} container
+       * @constructor
+       * @param  {Object} opts
        */
-      renderItems(items, container) {
-        items.forEach((item) => {
-          this._addItem(item, container);
-        });
-      }
-  /**
-   * 
-   */
-      initEvents() {
-        this.$title.addEventListener('click',
-        this.toggleDisplayMenu.bind(this));
-        this.$menuList.addEventListener('click', this.removeItem.bind(this));
-      }
-  /**
-   * 
-   */
-      toggleDisplayMenu() {
-        this.$el.classList.toggle('_open');
-      }
-  /**
-   * @param {Object} ev
-   */
-      removeItem(ev) {
-        let currentRemoveIcon = ev.target;
-        let currentItem;
-        let currentList;
+      constructor(opts) {
+          this.el = opts.el;
+          this.data = opts.data;
+          this.onPick = opts.onPick;
 
-        if (currentRemoveIcon.tagName === 'SUP') {
-          // для поддержки в IE11-
-          currentItem = currentRemoveIcon.closest('li');
-          currentList = currentItem.closest('ul');
-          currentList.removeChild(currentItem);
-        }
+          this.render();
+          this._initEvents();
       }
+
       /**
+       * Добавляем элемент меню
        * @param {Object} item
-       * @param {Object} container
        */
-      _addItem(item, container) {
-        let itemText = item.title;
-        let ulEl = document.createElement('ul');
-        let liEl = document.createElement('li');
-        let spanEl = document.createElement('span');
-        let removeIcon = document.createElement('sup');
+      addItem(item) {            
+          let el = document.createElement('div')
+          el.innerHTML = this.getItemHtml(item, this.data.items.length);
+          el = el.firstElementChild;
 
-        spanEl.textContent = itemText;
-        removeIcon.textContent = ' x';
-
-        liEl.append(spanEl, removeIcon);
-
-        if (item.items) { // а здесь нужно рекурсивно вызвать renderItems,
-          liEl.append(ulEl);
-          this.renderItems(item.items, ulEl); // указываем, что рендерим и куда
-        }
-
-        container.append(liEl);
+          this.list.append(el);
+          el.addEventListener('animationend', () => el.classList.remove('bounce-in-left'));
+          el.classList.add('bounce-in-left');
+          
+          this.data.items.push(item);
       }
-    }
 
-    window.Menu = Menu;
-})();
+      /**
+       * Удаляем пункт меню из данных
+       * @param  {Object} removedItem
+       */
+      removeItem(removedItem) {
+          this.data.items = this.data.items.filter((item, index) => {
+              return index !== removedItem.index;
+          });
+          this.render();
+      }
+
+      /**
+       * HTML одного объекта меню
+       * @param {Item} item
+       * @param {number} index
+       * @return {string}
+       */
+      getItemHtml (item, index) {
+          return `
+          <li class="pure-menu-item" data-index="${index}">
+              <a 
+              class="pure-menu-link"
+              href="${item.href}"
+              data-action="pick">
+                  ${item.anchor}
+              </a>
+              <i class="close" data-action="remove"></i>
+          </li>`;
+      }
+
+      /**
+       * Создаем HTML
+       */
+      render() {
+          /**
+           * Создаем HTML элементов меню
+           * @param {Array<Item>} itmes
+           * @return {string}
+           */
+          let generateItems = (itmes) => {
+              return itmes.map(this.getItemHtml.bind(this)).join('');
+          }
+
+          this.el.innerHTML = `
+          <div class="menu pure-menu custom-restricted-width">
+              <span class="menu__title pure-menu-heading">
+              ${this.data.title}
+              </span>
+              <ul class="menu__list pure-menu-list">
+              ${generateItems(this.data.items)}
+              </ul>
+          </div>
+          `;
+
+          this.list = this.el.querySelector('.menu__list');
+          this.title = this.el.querySelector('.menu__title');
+      }
+
+      /**
+      * Удаления элемента меню
+      * @param  {Element} item
+      * @private
+      */
+      _onRemoveClick(item) {
+          let el = /** @type {Element} */ item.parentNode;
+
+          let index = parseInt(item.parentNode.dataset.index, 10);
+          el.addEventListener('animationend', this.removeItem.bind(this, {index}));
+          el.classList.add('bounce-out-right');
+      }
+
+      /**
+      * Выбор элемента меню
+      * @param  {HTMLElement} item
+      */
+      _onPickClick(item) {
+          this.onPick(item);
+      }
+
+      /**
+      * Развешиваем события
+      */
+      _initEvents() {
+          this.el.addEventListener('click', this._onClick.bind(this));
+      }
+
+      /**
+      * Клик в любую область меню
+      * @param {Event} event
+      * @private
+      */
+      _onClick(event) {
+          event.preventDefault();
+          let item = event.target;
+
+          switch (item.dataset.action) {
+          case 'remove':
+          this._onRemoveClick(item);
+          break;
+
+          case 'pick':
+          this._onPickClick(item);
+          break;
+          }
+      }
+  }
+
+  // Export
+  window.Menu = Menu;
+})(window);
