@@ -1,8 +1,6 @@
 (function() {
 'use strict';
     // import
-    const Menu = window.Menu;
-
     /**
      * 
      */
