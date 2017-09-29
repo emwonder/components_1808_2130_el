@@ -15,7 +15,7 @@
     content: '▶';
     width: 10px;
     height: 0px;
-    color: green;
+    color: #801E00;
   }
   
   .menu__list {
@@ -43,3 +43,4 @@
     cursor: pointer;
   }
   
+ 
