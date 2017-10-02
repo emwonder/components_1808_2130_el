@@ -1,4 +1,8 @@
 div.menu.pure-menu.custom-restricted-width
 span.menu__title.pure-menu-heading= title
-
-
+ul.menu.menu__list
+    each item in items
+        li.pure-menu-list
+            a.pure-menu-link(href= item.href title= item.anchor data-action="pick")
+                | !{item.anchor}
+                i.close(data-action="remove")

@@ -88,6 +88,7 @@
 
             this.el.innerHTML = tmpl(this.data);
 
+            /*
             `
             <div class="menu pure-menu custom-restricted-width">
                 <span class="menu__title pure-menu-heading">
@@ -98,6 +99,7 @@
                 </ul>
             </div>
             `;
+            */
 
             this.list = this.el.querySelector('.menu__list');
             this.title = this.el.querySelector('.menu__title');
