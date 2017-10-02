@@ -36,7 +36,8 @@
             el = el.firstElementChild;
 
             this.list.append(el);
-            el.addEventListener('animationend', () => el.classList.remove('bounce-in-left'));
+            el.addEventListener('animationend',
+            () => el.classList.remove('bounce-in-left'));
             el.classList.add('bounce-in-left');
 
             this.data.items.push(item);
@@ -111,7 +112,8 @@
             let el = /** @type {Element} */ item.parentNode;
 
             let index = parseInt(item.parentNode.dataset.index, 10);
-            el.addEventListener('animationend', this.removeItem.bind(this, {index}));
+            el.addEventListener('animationend',
+             this.removeItem.bind(this, {index}));
             el.classList.add('bounce-out-right');
         }
 
