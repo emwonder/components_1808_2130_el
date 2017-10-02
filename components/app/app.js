@@ -22,7 +22,7 @@
                 },
 
                 data: {
-                    title: 'SINGLE PAGE APPLICATION',
+                    title: 'Сайты',
                     items: [
                         {
                             href: 'https://vk.com',
