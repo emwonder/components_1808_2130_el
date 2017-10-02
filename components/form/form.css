@@ -1,10 +1,10 @@
 .form {
-    padding: 0 20px;
+    padding: 20px 20px;
 }
 
 .form__input {
-    margin-right: 5px;
-    width: 150px;
+    margin-right: 20px;
+    width: 300 px;
 }
 
 .form__btn {

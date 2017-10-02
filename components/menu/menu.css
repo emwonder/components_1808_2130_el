@@ -3,13 +3,14 @@
 }
 
 .menu__title {
-  background-image: url(https://learn.javascript.ru/img/sitetoolbar__logo_small.svg);
+  background-image: url(images/uni.png);
   background-position: 0px -9px;
   background-repeat: no-repeat;
-
-  text-align: center;
-  font-size: 19px;
-  padding-left: 90px;
+  
+  text-align: left;
+  font-size: 22px;
+  color: #FFFFFF;
+  padding-left: 10px;
 }
 
 .close {

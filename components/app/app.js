@@ -22,7 +22,7 @@
                 },
 
                 data: {
-                    title: 'Сайты',
+                    title: 'Галерея сайтов',
                     items: [
                         {
                             href: 'https://vk.com',
@@ -35,10 +35,6 @@
                         {
                             href: 'https://yahoo.com',
                             anchor: 'yahoo.com'
-                        },
-                        {
-                            href: 'https://yandex.ru',
-                            anchor: 'yandex.ru'
                         },
                         {
                             href: 'https://yandex.ru',
