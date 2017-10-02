@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint components/**/*.js",
-    "serve": "./node_modules/.bin/static-server .",
+    "serve": "./node_modules/.bin/lite-server .",
     "pug": "pug components/menu/menu.pug --client --extension=pug.js --name=menuTmpl",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -33,7 +33,7 @@
     "eslint-plugin-node": "^5.2.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
-    "pug": "^2.0.0-rc.4",
-    "static-server": "^2.0.5"
+    "lite-server": "^2.3.0",
+    "pug": "^2.0.0-rc.4"
   }
 }
