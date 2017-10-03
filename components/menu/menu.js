@@ -73,6 +73,7 @@
             </li>`;
         }
 
+
         /**
          * Создаем HTML
          */
@@ -82,11 +83,14 @@
              * @param {Array<Item>} itmes
              * @return {string}
              */
-            let generateItems = (itmes) => {
+
+            /*
+             let generateItems = (itmes) => {
                 return itmes.map(this.getItemHtml.bind(this)).join('');
             };
-
+   */
             this.el.innerHTML = tmpl(this.data);
+
 
             /*
             `
@@ -99,7 +103,7 @@
                 </ul>
             </div>
             `;
-            */
+           */
 
             this.list = this.el.querySelector('.menu__list');
             this.title = this.el.querySelector('.menu__title');
